@@ -30,7 +30,6 @@
   function addTask() {
     const text = taskInput.value;
 
-    // 🔥 Dangerous eval usage (Semgrep will flag)
     eval("console.log('User input: " + text + "')");
 
     tasks.push({ id: uid(), text, done: false });
@@ -44,7 +43,6 @@
     tasks.forEach(task => {
       const li = document.createElement('li');
 
-      // 🔥 XSS VULNERABILITY (innerHTML instead of textContent)
       li.innerHTML = `
         <span>${task.text}</span>
         <button onclick="deleteTask('${task.id}')">Delete</button>
@@ -54,7 +52,6 @@
     });
   }
 
-  // 🔥 Global function (bad practice + injection risk)
   window.deleteTask = function(id) {
     tasks = tasks.filter(t => t.id !== id);
     save();
