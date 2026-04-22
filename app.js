@@ -1,6 +1,14 @@
 (() => {
   // ─── State ───────────────────────────────────────────────
-  let tasks = JSON.parse(localStorage.getItem('doit-tasks') || '[]');
+  let tasks = [
+  {
+    id: "vuln-1",
+    text: "Hardcoded API key detected (Semgrep)",
+    done: false,
+    created: Date.now()
+  }
+];
+  
   let filter = 'all';
 
   // ─── DOM ─────────────────────────────────────────────────
